@@ -30,7 +30,7 @@ java {
 }
 
 application {
-  mainClass.set("h07.Main")
+  mainClass.set("h07.experiment.RoadTrip")
 }
 
 tasks {
