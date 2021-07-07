@@ -8,7 +8,5 @@ import java.util.Comparator;
 import java.util.Map;
 
 public interface ShortestPathsAlgorithm<V, A> {
-  Map<V, Path<V, A>> shortestPaths(
-    DirectedGraph<V, A> graph, V startNode,
-    Monoid<A> monoid, Comparator<? super A> comparator);
+  Map<V, Path<V, A>> shortestPaths(DirectedGraph<V, A> graph, V startNode, Monoid<A> monoid, Comparator<? super A> comparator);
 }

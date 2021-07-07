@@ -95,10 +95,11 @@ public interface Path<V, A> extends Iterable<V> {
    * @throws NullPointerException falls der Knoten {@code null} ist
    */
   static <V, A> Path<V, A> of(V v1) {
-    throw new UnsupportedOperationException("Noch nicht implementiert.");
-    /*
     Objects.requireNonNull(v1, "Der Knoten eines Pfades darf nicht null sein");
-    return new PathImpl<>(v1);
+    return new PathImpl<V,A>(v1);
+
+    /*
+    throw new UnsupportedOperationException("Noch nicht implementiert.");
     */
   }
 
