@@ -33,11 +33,10 @@ class DirectedGraphImpl<V, A> implements DirectedGraph<V, A> {
     List<V> children = new LinkedList<>();
 
     for (ArcItem<A, V> arcItem : arcs) {
-      if (arcItem.node1.equals(node) && !children.contains(arcItem.node1))
+      if (arcItem.node1.equals(node) && !children.contains(arcItem.node2))
         children.add(arcItem.node2);
-
     }
-    return children;
+    return children.stream().collect(Collectors.toUnmodifiableSet());
   }
 
   @Override
@@ -47,7 +46,7 @@ class DirectedGraphImpl<V, A> implements DirectedGraph<V, A> {
     if (!getChildrenForNode(from).contains(to))
       throw new NoSuchElementException("Entweder ist from nicht im Graphen oder to kein Child von from");
     for (ArcItem<A, V> arcItem : arcs) {
-      if (arcItem.node1.equals(from))
+      if (arcItem.node1.equals(from) && arcItem.node2.equals(to))
         return arcItem.weight;
     }
     return null;
@@ -66,9 +65,10 @@ class DirectedGraphImpl<V, A> implements DirectedGraph<V, A> {
   public void removeNode(V node) {
     if (node == null)
       throw new NullPointerException();
-    if (!getAllNodes().contains(node))
-      throw new IllegalArgumentException("removeNode");
+    if (!vertices.contains(node))
+      throw new NoSuchElementException("removeNode");
     arcs.removeIf(arc -> arc.node1.equals(node) || arc.node2.equals(node));
+    vertices.remove(node);
   }
 
   @Override
@@ -103,6 +103,7 @@ class DirectedGraphImpl<V, A> implements DirectedGraph<V, A> {
       this.weight = weight;
     }
 
+    /*
     @Override
     public String toString() {
       return "ArcItem{" +
@@ -111,7 +112,11 @@ class DirectedGraphImpl<V, A> implements DirectedGraph<V, A> {
         ", weight=" + weight +
         '}';
     }
+
+     */
   }
+
+  /*
 
   @Override
   public String toString() {
@@ -120,4 +125,6 @@ class DirectedGraphImpl<V, A> implements DirectedGraph<V, A> {
       ", arcs=" + arcs +
       '}';
   }
+  */
+
 }

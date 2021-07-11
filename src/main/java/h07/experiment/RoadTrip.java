@@ -6,16 +6,22 @@ import h07.algorithm.Dijkstra;
 import h07.graph.AdjacencyMatrixFactory;
 */
 
+import h07.algebra.IntegerAddition;
+import h07.algorithm.Dijkstra;
+import h07.graph.AdjacencyMatrixFactory;
+
+import java.util.Comparator;
+
 public class RoadTrip {
   public static void main(String[] args) {
     String[] nodes = {
-      "München",
+      "Muenchen",
       "Augsburg",
       "Karlsruhe",
       "Erfurt",
-      "Nürnberg",
+      "Nuernberg",
       "Kassel",
-      "Würzburg",
+      "Wuerzburg",
       "Stuttgart",
       "Mannheim",
       "Frankfurt"
@@ -33,7 +39,7 @@ public class RoadTrip {
       {null, null, 80, null, null, null, null, null, null, 85},
       {null, null, null, null, null, 173, 217, null, 85, null}
     };
-    /*
+
     var factory = new AdjacencyMatrixFactory<>(nodes, adjacencyMatrix);
     var graph = factory.createDirectedGraph();
 
@@ -45,7 +51,7 @@ public class RoadTrip {
 
     // Sollte "Frankfurt -217-> Würzburg -103-> Nürnberg -167-> München"
     // ausgeben.
-    System.out.println(paths.get("München"));
-    */
+    System.out.println(paths.get("Muenchen"));
+
   }
 }

@@ -10,6 +10,7 @@ import java.util.Objects;
  * @param <A> der Typ der Kantengewichte dieses Pfades
  */
 public interface Path<V, A> extends Iterable<V> {
+
   /**
    * Dieses Interface ermöglicht das Traversieren eines gerichteten Pfades.
    * Dabei läuft der {@code Traverser} von Knoten zu Knoten unter
@@ -56,6 +57,7 @@ public interface Path<V, A> extends Iterable<V> {
      * dieses {@code Traverser}s handelt
      */
     boolean hasNextNode();
+
   }
 
   /**
@@ -96,7 +98,7 @@ public interface Path<V, A> extends Iterable<V> {
    */
   static <V, A> Path<V, A> of(V v1) {
     Objects.requireNonNull(v1, "Der Knoten eines Pfades darf nicht null sein");
-    return new PathImpl<V,A>(v1);
+    return new PathImpl<>(v1);
 
     /*
     throw new UnsupportedOperationException("Noch nicht implementiert.");

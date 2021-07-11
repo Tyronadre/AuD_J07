@@ -10,6 +10,8 @@ public class AdjacencyMatrixFactory<V, A> implements DirectedGraphFactory<V, A> 
   public AdjacencyMatrixFactory(V[] nodes, A[][] adjacencyMatrix) {
     if (adjacencyMatrix == null || nodes == null || Arrays.stream(nodes).anyMatch(Objects::isNull))
       throw new NullPointerException();
+    if (nodes.length != adjacencyMatrix.length)
+      throw new IllegalArgumentException();
     this.adjacencyMatrix = adjacencyMatrix;
     this.nodes = nodes;
   }

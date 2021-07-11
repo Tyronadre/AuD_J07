@@ -2,6 +2,7 @@ package h07.graph;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 class PathImpl<V, A> extends AbstractPath<V, A> {
   private final V[] nodes;
@@ -48,7 +49,7 @@ class PathImpl<V, A> extends AbstractPath<V, A> {
       @Override
       public void walkToNextNode() {
         if (currentNode++ == nodes.length - 1)
-          throw new IllegalStateException();
+          throw new NoSuchElementException();
       }
 
       @Override
@@ -76,7 +77,7 @@ class PathImpl<V, A> extends AbstractPath<V, A> {
 
   @Override
   public Iterator<V> iterator() {
-    return new Iterator<V>() {
+    return new Iterator<>() {
       int currentNode;
 
       @Override
@@ -86,7 +87,9 @@ class PathImpl<V, A> extends AbstractPath<V, A> {
 
       @Override
       public V next() {
-        return nodes[currentNode++ - 1];
+        if (currentNode > nodes.length - 1)
+          throw new NoSuchElementException();
+        return nodes[currentNode++];
       }
     };
   }
